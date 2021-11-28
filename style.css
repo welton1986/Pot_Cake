@@ -1,0 +1,696 @@
+/*========= RESET* ========================*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: auto;
+  
+}
+
+
+
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+/*========= VARIABLES ========================*/
+
+/* Para usar o rem , voçê divide o valor em pixel por 16 */
+:root {
+    --header-height: 4.5rem;
+
+    /* colors */
+    --hue: 300;
+    /* HSL color mode */
+    --base-color: hsl(var(--hue) 36% 57%);
+    --base-color-second: hsl(var(--hue) 65% 88%);
+    --base-color-alt: hsl(var(--hue) 57% 53%);
+    --title-color: hsl(var(--hue) 41% 10%);
+    --text-color: hsl(0 0% 46%);
+    --text-color-light: hsl(0 0% 98%);
+    --body-color: hsl(0 0% 98%);
+
+    /*FONTS*/
+
+    --title-font-size: 1.85rem;
+    --subtitle-font-size: 1rem;
+
+    --title-font: 'Poppins', sans-serif;
+    --body-font: 'DM Sans', sans-serif;
+    
+
+}
+
+
+
+
+/*========= BASE ========================*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font: 400 1rem var(--body-font);
+    color: var(--text-color);
+    background: var(--body-color);
+    -webkit-font-smoothing: antialiased; /* Deixa a fonte mais fina*/
+}
+
+.title {
+    font: 700 var(--title-font-size) var(--title-font);
+    color: var(--title-color);
+    -webkit-font-smoothing: auto;
+}
+
+.button {
+    background-color: var(--base-color) ;
+    color: var(--text-color-light);
+    height: 3.5rem;
+    display: inline-flex;  /*Ele mantem o tamanho dos itens dentro e fica flexivel para movimentar o texto. */
+    align-items: center;
+    padding: 0 2rem; /* em cima zerado e nas laterais 2rem*/
+    border-radius: 0.25rem;
+    font: 500 1rem var(--body-font);
+    transition: background-color 0.3s;
+
+}
+
+.button:hover {
+    background-color: var(--base-color-alt);
+}
+
+.divider-1 {
+    height: 1px;
+    background: linear-gradient(270deg, 
+    hsla(var(--hue),36%, 57%, 1) ,
+    hsla(var(--hue),65%, 88%, 0.34)
+    ) ;
+}
+
+.divider-2 {
+    height: 1px;
+    background: linear-gradient(270deg, 
+    hsla(var(--hue),65%, 88%, 0.34),
+    hsla(var(--hue),36%, 57%, 1) 
+    ) ;
+}
+
+
+
+
+/*========= LAYOUT ========================*/
+
+.container {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.section {
+    padding:  3rem 0 ;
+}
+
+
+.section .title {
+    margin-bottom: 1rem;
+}
+
+.section .subtitle {
+    font-size: var(--subtitle-font-size);
+}
+
+.section header {
+    margin-bottom: 4rem;
+}
+
+.section header strong {
+    color: var(--base-color);
+}
+
+
+#header {
+    border-bottom: 1px solid #E4E4E4 ;
+    margin-bottom: 2rem;
+    display: flex;
+
+    width: 100%;
+    position: fixed;  /* Parao header ficar fixo em cima na pagina*/
+    top: 0;
+    left: 0;
+    z-index: 100;  /* Serve para jogar o header pra cima do conteudo*/
+    background-color: var(--body-color);  
+}
+
+#header.scroll {
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+   
+}
+
+main {
+    margin-top: var(--header-height) ;
+}
+
+
+
+/*========= LOGO ========================*/
+
+.logo{
+    font: 700 1.31rem var(--title-font);
+    color: #534f4f;
+
+}
+
+
+
+.logo span{
+    color: var(--base-color);
+}
+
+
+
+
+/*========= NAVIGATION ========================*/
+
+nav {
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+nav ul li  {
+    text-align: center;
+}
+
+nav ul li a {
+    transition: color 0.2s;
+    position: relative;
+}
+
+
+
+nav .menu {
+    /*display: none;  tive que tirar para que funcionasse o atraso ao decer o menu*/
+    opacity: 0;
+    visibility: hidden;  /*serve para esconder o menu*/
+    top: -20rem;
+    transition: 0.2s;
+}
+
+nav .menu ul  {
+    display: none;
+}
+
+nav ul li a:hover {
+    color: var(--base-color);
+}
+
+
+
+/*========= MOSTAR MENU ========================*/
+nav.show .menu {
+   opacity: 1;
+   visibility: visible; 
+
+   background: var(--body-color);
+   height: 100vh;
+   width: 100%; /* Modifiquei para porcentagem para alinhar em toda a largura da tela*/
+
+   position: fixed; /*deixando o menu ocupar todatela*/
+   top: 0;
+   left: 0;
+
+   display: grid;
+   place-content: center;
+}
+
+nav.show .menu ul{
+    display: grid;
+}
+
+
+
+nav.show ul.grid {
+    gap:4rem;
+}
+
+/* toggle menu*/
+
+.toggle {
+    color: var(--base-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+nav .icon-close {
+    visibility: hidden;
+    opacity: 0;
+
+    position: absolute;
+    top: -1.5rem;
+    right: 1.5rem;
+    transition: 0.2s;
+}
+
+nav.show div.icon-close {
+    visibility: visible;
+    opacity: 1;
+    top: 1.5rem;
+    
+}
+
+
+
+/*========= HOME ========================*/
+
+#home {
+    overflow: hidden; /* Esse parametro serve para tirar a rolagem e deixar o header com a imagem no limite e não transbordar para fora */
+    background-color: #b688b6;
+
+}
+
+
+
+#home .container{
+    margin: 0;
+}
+
+
+#home .image {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+
+#home img {
+    width: 100%;
+    height: 100%;
+}
+
+
+#home .image img {
+    position: relative;  /* Consigo mexer no espaço da imagem*/
+    
+}
+
+
+
+#home .image img{
+    border-radius: 0.25rem;
+}
+
+#home .text {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    text-align: center;
+}
+
+#home .text h1 {
+    margin-bottom: 1rem;
+}
+
+#home .text p {
+    margin-bottom: 2rem;
+    color: #FFF;
+    
+}
+
+
+/*========= ABOUT ========================*/
+
+#about {
+    background: #FFF;
+
+}
+
+#about {
+    overflow: hidden; /* Esse parametro serve para tirar a rolagem e deixar o header com a imagem no limite e não transbordar para fora */
+}
+
+#about .container{
+    margin: 0;
+}
+
+#about .image {
+    position: relative;
+}
+
+
+#about .image img {
+    position: relative;  /* Consigo mexer no espaço da imagem*/
+   
+}
+
+
+
+#about .image img{
+    border-radius: 0.25rem;
+}
+
+#about .text {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    
+}
+
+#about .text strong {
+    color: var(--base-color);
+}
+
+
+/*========= SERVICES ========================*/
+
+#sabores {
+    background-color: #b688b6;
+}
+
+#sabores p {
+    color: #FFF;
+}
+
+.cards.grid {
+    gap: 1.5rem;
+}
+
+.card {
+    padding: 3.625rem 2rem; /*cima/baixo  e  laterais*/
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+    border-bottom: 0.25rem solid var(--base-color);
+    border-radius: 0.25rem 0.25rem 0 0; /*borda em cima direita e esquerda e em baixo nenhuma borda*/
+    text-align: center;
+}
+
+.card img {
+    width: 100px;
+}
+
+.card i {
+    display: block;
+    margin-bottom: 1.5rem;
+    font-size: 5rem;
+    color: var(--base-color);
+}
+
+.card title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+
+/* swiper */
+.swiper-slide {
+    height: auto;
+    width: auto;
+    padding: 4rem 1rem;
+  }
+  
+  .swiper-pagination {
+    width: 0.75rem;
+    height: 1rem;  /* Almentei a altura para aparecer toda a bolinha do pagination*/
+    position:relative; /*Deixei comorelativo para trazer para o lugar certo os icones*/
+    overflow-y:hidden; /* coloquei essa propriedade para anular a barra vertical no pagination*/
+
+  }
+
+  
+  .swiper-pagination-bullet-active {
+    background: var(--base-color);
+  }
+
+
+  
+/* Contact */
+
+#contact .grid {
+    gap: 4rem;
+}
+
+#contact .text p {
+    margin-bottom: 2rem;
+}
+
+#contact .text strong {
+    color: var(--base-color);
+}
+
+#contact .button i,
+#contact ul li i {
+    font-size: 1.5rem;
+    margin-right: 0.625rem;
+}
+
+#contact ul.grid {
+    gap: 2rem;
+}
+
+#contact ul li {
+    display: flex;
+    align-items: center;
+}
+
+#contact ul li i {
+    color: var(--base-color);
+}
+
+/* footer */
+
+footer {
+    background-color: var(--base-color);
+}
+
+footer .logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+footer .logo span {
+    color:  var(--text-color-light) ;
+}
+
+footer .brand p {
+    color: var(--text-color-light);
+    margin-bottom: 0.75rem;
+}
+
+footer i {
+    font-size: 1.5rem;
+    color: var(--text-color-light);
+}
+
+footer .social {   /* Coloquei essa linha de codigo para ajustar a altura , para que os icones movesse com efeito*/
+    display: flex;
+    align-items:flex-end;
+    height: 40px;
+}
+
+footer .social a {
+    transition: 0.3s; /*Precisa da transição para que faça o efeito no icone*/
+    display: inline-block;
+}
+
+footer .social a:hover {
+    transform: translateY(-8px);
+}
+
+footer .created {
+    text-align: center;
+    margin-top: 40px;
+    
+}
+
+/*  back-to-top*/
+
+.back-to-top {
+    background-color: var(--base-color);
+    color: var(--text-color-light);
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+
+    padding: 0.5rem;
+    clip-path: circle();
+
+    font-size: 1.5rem;
+    line-height: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateY(100%); /*Usado para que o botao suba suave*/
+
+}
+
+.back-to-top.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%); /*usado para que o botão suba suave*/
+}
+
+
+/* Responsivo****************************************/
+
+@media (min-width:1024px) {
+    .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .section {
+        padding: 10rem 0;
+    }
+
+    .section header,
+    #testimonials header {
+        max-width: 32rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button {
+        height: 3.125rem;
+    }
+
+   nav .icon-menu {
+       display: none;
+   }
+
+    nav .menu {
+        opacity: 1;
+        visibility:visible;  /*serve para esconder o menu*/
+        top: 0;
+    }
+    
+    nav .menu ul  {
+        display: flex;
+        gap: 2rem;
+    }
+
+    nav .menu ul li a.title {
+        font: 400 1rem var(--body-font) ;
+    }
+
+    
+    #home .container {
+        grid-auto-flow: column;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    #home .image {
+        order: 1;
+    }
+
+    #home .text {
+        order: 0;
+        max-width: 24rem;
+        text-align: left;
+    }
+
+    #about .container {
+        margin: 0 auto;
+        grid-auto-flow: column;
+
+    }
+
+    .cards {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .cards {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    #testimonials .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #contact .container {
+        grid-auto-flow: column;
+        align-items: center;
+    
+    }
+
+
+    footer.section {
+        padding: 3.75rem 0;
+    }
+
+    footer .container {
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    footer .logo {
+        font-size: 2.25rem;
+    }
+
+
+}
+
+
+
+
+
+@media (max-width:600px) {
+
+    
+
+    #contact .text {
+        text-align: center;
+    }
+
+    #services .grid {
+        text-align: center;
+    }
+
+    #about .text {
+        text-align: center;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
