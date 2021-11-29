@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: auto;
+    overflow-x: hidden;
   
 }
 
@@ -286,41 +286,39 @@ nav.show div.icon-close {
 #home {
     overflow: hidden; /* Esse parametro serve para tirar a rolagem e deixar o header com a imagem no limite e não transbordar para fora */
     background-color: #b688b6;
+    height:37.5rem;
 
 }
 
-
-
 #home .container{
+    display: flex;
     margin: 0;
+    height:19rem;
 }
 
 
 #home .image {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
     position: relative;
 
 }
 
-#home img {
-    width: 100%;
-    height: 100%;
-}
-
-
-#home .image img {
-    position: relative;  /* Consigo mexer no espaço da imagem*/
-    
-}
-
-
-
 #home .image img{
     border-radius: 0.25rem;
+    height: 95%;
+    width: 95%;
 }
 
 #home .text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
     text-align: center;
@@ -341,28 +339,30 @@ nav.show div.icon-close {
 
 #about {
     background: #FFF;
-
-}
-
-#about {
-    overflow: hidden; /* Esse parametro serve para tirar a rolagem e deixar o header com a imagem no limite e não transbordar para fora */
 }
 
 #about .container{
     margin: 0;
+    display: flex;
+    height: 300px;
 }
 
 #about .image {
     position: relative;
+    width: 50%;
+    height: 100%;
+    
+   
 }
 
 
 #about .image img {
     position: relative;  /* Consigo mexer no espaço da imagem*/
-   
+    width: 100%;
+    height: 95%;
+    
+    
 }
-
-
 
 #about .image img{
     border-radius: 0.25rem;
@@ -371,6 +371,9 @@ nav.show div.icon-close {
 #about .text {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+    text-align: center;
+    padding: 10px;
+    
     
 }
 
@@ -669,9 +672,67 @@ footer .created {
         text-align: center;
     }
 
+
+
+    #home .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+    }
+
+    #home .container .image {
+        width: 100%;
+        height: 700px;
+        
+    }
+
+    #home .image img {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    #home .text {
+        width: 100%;
+        height: 700px;
+    }
+
+    #about {
+        padding: 0;
+    }
+   
+
+    #about .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 700px;
+        
+    }
+
+    #about .image {
+        width: 100%;
+        height: 240px;
+        
+    }
+
+    #about .image img {
+        width: 100%;
+        border-radius: 0;
+    }
+
     #about .text {
+        width: 100%;
+        
+    }
+
+    #sabores {
         text-align: center;
     }
+
+
 
 }
 
